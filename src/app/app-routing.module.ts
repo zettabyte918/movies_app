@@ -1,10 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { MoviesComponent } from './movies/movies.component';
+import { AddMovieComponent } from './add-movie/add-movie.component';
+import { UpdateMovieComponent } from './update-movie/update-movie.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'movies', component: MoviesComponent },
+  { path: 'add-movie', component: AddMovieComponent },
+  { path: 'update-movie/:title', component: UpdateMovieComponent },
+  { path: '**', redirectTo: 'login' },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
