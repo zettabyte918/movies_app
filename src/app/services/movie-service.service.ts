@@ -6,8 +6,8 @@ import { Movie } from '../models/movies';
 })
 export class MovieServiceService {
   movies: Movie[] = [
-    new Movie('Inception', 'A mind-bending thriller', 2010),
-    new Movie('The Shawshank Redemption', 'Drama and redemption', 1994),
+    new Movie('Inception', 'A mind-bending thriller'),
+    new Movie('The Shawshank Redemption', 'Drama and redemption'),
   ];
 
   constructor() {}

@@ -26,9 +26,8 @@ export class AddMovieComponent {
   addMovie() {
     const title = this.myForm.get('title')?.value;
     const description = this.myForm.get('description')?.value;
-    const year = this.myForm.get('year')?.value;
 
-    const movie = new Movie(title, description, year);
+    const movie = new Movie(title, description);
 
     // add new movies by movies service
     this.moviesService.addMovie(movie);

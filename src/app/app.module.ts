@@ -9,6 +9,7 @@ import { AddMovieComponent } from './add-movie/add-movie.component';
 import { UpdateMovieComponent } from './update-movie/update-movie.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UpdateMovieComponent,
     NavbarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
