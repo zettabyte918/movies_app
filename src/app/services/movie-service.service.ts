@@ -1,32 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Movie } from '../models/movies';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MovieServiceService {
-  movies: Movie[] = [
-    new Movie('Inception', 'A mind-bending thriller'),
-    new Movie('The Shawshank Redemption', 'Drama and redemption'),
-  ];
+  movies: Movie[] = [];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getMovies() {
-    return this.movies;
+    return this.http.get<Movie[]>(`${environment.api}/entities`);
   }
 
   addMovie(movie: Movie) {
-    this.movies.push(movie);
+    return this.http.post<Movie>(`${environment.api}/entities`, movie);
   }
 
-  getMovieByTitle(title: string) {
-    const movie: any = this.movies.filter((movie: Movie) => {
-      return movie.title == title;
-    });
-
-    return movie;
+  getMovieById(id: string) {
+    return this.http.get<Movie>(`${environment.api}/entities/${id}`);
   }
 
-  updateMovie(movie: Movie) {}
+  updateMovie(id: string, movie: Movie) {
+    return this.http.put<Movie>(`${environment.api}/entities/${id}`, movie);
+  }
+
+  deleteMovie(id: string) {
+    return this.http.delete<any>(`${environment.api}/entities/${id}`);
+  }
 }

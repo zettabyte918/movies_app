@@ -11,6 +11,7 @@ import { Movie } from '../models/movies';
 })
 export class UpdateMovieComponent implements OnInit {
   myForm!: FormGroup;
+  movieId!: string;
 
   constructor(
     private router: Router,
@@ -26,16 +27,21 @@ export class UpdateMovieComponent implements OnInit {
 
   updateMovie() {
     const movie: Movie = this.myForm.value;
+
+    this.moviesService.updateMovie(this.movieId, movie).subscribe(() => {
+      this.router.navigate(['/movies']);
+    });
   }
 
   ngOnInit(): void {
-    const movieTitle = this.route.snapshot.paramMap.get('title') || '';
-    if (movieTitle) {
-      let movie: any = this.moviesService.getMovieByTitle(movieTitle)[0];
-
-      this.myForm.get('title')?.setValue(movie.title);
-      this.myForm.get('description')?.setValue(movie.description);
-      this.myForm.get('year')?.setValue(movie.year);
+    this.movieId = this.route.snapshot.paramMap.get('id') || '';
+    if (this.movieId) {
+      let movie = this.moviesService
+        .getMovieById(this.movieId)
+        .subscribe((res) => {
+          this.myForm.get('title')?.setValue(res.title);
+          this.myForm.get('description')?.setValue(res.description);
+        });
     }
   }
 }

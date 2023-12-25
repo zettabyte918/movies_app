@@ -26,11 +26,10 @@ export class AddMovieComponent {
   addMovie() {
     const title = this.myForm.get('title')?.value;
     const description = this.myForm.get('description')?.value;
-
-    const movie = new Movie(title, description);
-
+    const movie: Movie = new Movie('', title, description);
     // add new movies by movies service
-    this.moviesService.addMovie(movie);
-    this.router.navigate(['/movies']);
+    this.moviesService.addMovie(movie).subscribe(() => {
+      this.router.navigate(['/movies']);
+    });
   }
 }

@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'movies', component: MoviesComponent },
   { path: 'add-movie', component: AddMovieComponent },
-  { path: 'update-movie/:title', component: UpdateMovieComponent },
+  { path: 'update-movie/:id', component: UpdateMovieComponent },
   { path: '**', redirectTo: 'login' },
 ];
 
